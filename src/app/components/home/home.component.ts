@@ -4,10 +4,16 @@ import { CommonModule } from '@angular/common';
 // components ---
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { groupedCategories } from '../../../../public/trivaCatagories';
+
+// triva ---
+import { CategoryGroup, groupedCategories } from '../../../../public/trivaCatagories';
 
 // icon ---
 import { LucideAngularModule, Rocket } from 'lucide-angular';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -15,6 +21,8 @@ import { LucideAngularModule, Rocket } from 'lucide-angular';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
+
 export class HomeComponent {
   imgSpace = 'images/spaceImg.jpg';
 
@@ -23,4 +31,13 @@ export class HomeComponent {
 
   // icon --
   readonly RocketIcon = Rocket;
+  
+  // routing --
+  constructor(private router:Router){}
+  goToCategory(group:CategoryGroup){
+    this.router.navigate(['/categories'],{
+      state:{data:group}
+    });
+  }
+
 }

@@ -1,4 +1,6 @@
 <div class="h-screen w-full space-y-3">
+  
+  <!-- heading -->
   <div class="text-center p-20">
     <div class="text-center text-white">
       <h1
@@ -19,6 +21,8 @@
     </div>
   </div>
   <div class="flex justify-center items-center space-x-2">
+    
+    <!-- show the 3 different Options -->
     @for (item of array; track $index) {
     <p-card
       class="shadow-2xl shadow-gray-500 transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-gray-500"
@@ -33,7 +37,7 @@
       </p>
       <ng-template #footer>
         <div class="flex gap-4 mt-1">
-            <p-button styleClass="!font-semibold !font-mono" variant="text" [raised]="true" severity="danger" >
+            <p-button (onClick)="goToCategory(item)"  styleClass="!font-semibold !font-mono" variant="text" [raised]="true" severity="danger" >
                 Go<lucide-icon [img]="RocketIcon" class="my-icon"></lucide-icon>
             </p-button>
         </div>

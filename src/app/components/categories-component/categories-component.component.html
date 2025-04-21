@@ -1,0 +1,45 @@
+<div class="w-full flex flex-col bg-gradient-to-r from-violet-200 to-pink-200">
+  <!-- go back button -->
+  <div class="p-3 mb-3">
+    <p-button
+      (onClick)="router.navigate(['/'])"
+      icon="pi pi-arrow-left"
+      [rounded]="true"
+      [text]="true"
+      [raised]="true"
+      severity="danger"
+    />
+  </div>
+
+  <!-- main -->
+  <div class="grid grid-cols-3 font-mono p-5 space-x-3 space-y-3">
+    @for (item of groupData.categories; track $index) {
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+      <ng-template #header>
+        <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />
+      </ng-template>
+      <ng-template #title> Quiz on {{ item.name }}!</ng-template>
+      
+      <!-- question options option -->
+       <div class="flex">
+            <div class="flex items-center space-x-1.5 ">
+                <span>Number of Question:</span>
+                <p-selectbutton styleClass="!bg-red-500" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+            </div>
+        </div>
+
+        <!-- start quiz -->
+      <ng-template #footer>
+        <div class="flex gap-4 mt-1">
+          <p-button variant="text" [raised]="true" severity="help">
+            Lets Go Quizzing!<lucide-icon
+              [img]="RocketIcon"
+              class="my-icon"
+            ></lucide-icon>
+          </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+    }
+  </div>
+</div>
