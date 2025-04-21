@@ -1,3 +1,8 @@
+
+// api example --- 
+// amount = number of questions. category = id of the type, difficulty = easy/medium/hard, and type=multiple/boolean
+// https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean
+
 // Interfaces
 export interface Category {
   id: number;
@@ -6,6 +11,7 @@ export interface Category {
 
 export interface CategoryGroup {
   groupName: string;
+  description: string;
   categories: Category[];
 }
 
@@ -13,6 +19,7 @@ export interface CategoryGroup {
 export const groupedCategories: CategoryGroup[] = [
   {
     groupName: 'Entertainment',
+    description: "Dive into a variety of fun quizzes covering books, films, music, anime, and more from the world of entertainment.",
     categories: [
       { id: 10, name: 'Books' },
       { id: 11, name: 'Film' },
@@ -28,6 +35,7 @@ export const groupedCategories: CategoryGroup[] = [
   },
   {
     groupName: 'Science',
+    description: "Test your knowledge across various science topics including computers, mathematics, nature, and modern gadgets.",
     categories: [
       { id: 17, name: 'Science & Nature' },
       { id: 18, name: 'Computers' },
@@ -37,6 +45,7 @@ export const groupedCategories: CategoryGroup[] = [
   },
   {
     groupName: 'General',
+    description: "Challenge yourself with quizzes on a wide range of topics including history, geography, sports, mythology, and more.",
     categories: [
       { id: 9, name: 'General Knowledge' },
       { id: 20, name: 'Mythology' },

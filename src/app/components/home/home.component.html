@@ -1,3 +1,44 @@
-<div class="h-screen w-full">
-    
+<div class="h-screen w-full space-y-3">
+  <div class="text-center p-20">
+    <div class="text-center text-white">
+      <h1
+        class="font-mono text-3xl font-semibold flex justify-center flex-wrap gap-x-2"
+      >
+        <span class="text-red-600">Test</span>
+        <span>Your</span>
+        <span class="text-yellow-400">Quiz</span>
+        <span>Knowledge</span>
+        <span>On Different</span>
+        <span class="text-blue-600">Categories!</span>
+      </h1>
+      <p class="mt-4 text-gray-700 font-mono text-base">
+        Explore exciting topics, take on challenges, and see how much you really
+        know! Dive into fun and challenging quizzes from various topics — sharpen your
+        skills, learn new facts, and challenge your friends!
+      </p>
+    </div>
+  </div>
+  <div class="flex justify-center items-center space-x-2">
+    @for (item of array; track $index) {
+    <p-card
+      class="shadow-2xl shadow-gray-500 transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-gray-500"
+      [style]="{ width: '22rem', overflow: 'hidden' }"
+    >
+      <ng-template #header>
+        <img alt="Card" class="w-full" src="{{ imgSpace }}" />
+      </ng-template>
+      <ng-template #title> {{ item.groupName }} </ng-template>
+      <p class="font-mono">
+        {{ item.description }}
+      </p>
+      <ng-template #footer>
+        <div class="flex gap-4 mt-1">
+            <p-button styleClass="!font-semibold !font-mono" variant="text" [raised]="true" severity="danger" >
+                Go<lucide-icon [img]="RocketIcon" class="my-icon"></lucide-icon>
+            </p-button>
+        </div>
+      </ng-template>
+    </p-card>
+    }
+  </div>
 </div>
