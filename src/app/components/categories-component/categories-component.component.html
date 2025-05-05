@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col bg-gradient-to-r from-violet-200 to-pink-200">
+<div class="w-min-full h-min-screen flex flex-col bg-gradient-to-r from-violet-200 to-pink-200">
   <!-- go back button -->
   <div class="p-3 mb-3">
     <p-button
@@ -12,26 +12,67 @@
   </div>
 
   <!-- main -->
-  <div class="grid grid-cols-3 font-mono p-5 space-x-3 space-y-3">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 font-mono p-5 gap-3">
     @for (item of groupData.categories; track $index) {
-    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+    <p-card class="w-full overflow-hidden rounded-xl max-w-md">
       <ng-template #header>
         <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />
       </ng-template>
       <ng-template #title> Quiz on {{ item.name }}!</ng-template>
-      
-      <!-- question options option -->
-       <div class="flex">
-            <div class="flex items-center space-x-1.5 ">
-                <span>Number of Question:</span>
-                <p-selectbutton styleClass="!bg-red-500" [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
-            </div>
-        </div>
 
-        <!-- start quiz -->
+      <!-- question options option -->
+      <div class="flex">
+        <div class="flex flex-col space-y-2 space-x-1.5">
+          <div class="items-center flex space-x-2">
+            <span>Number of Question:</span>
+            <p-selectbutton
+            class="custom-select"
+            [options]="stateOptions"
+            [(ngModel)]="valuesQ[$index]"
+            optionLabel="label"
+            optionValue="value"
+            aria-labelledby="basic"
+            />
+          </div>
+
+          <div class="items-center flex space-x-2">
+            <span>Difficulty:</span>
+            <p-selectbutton
+            class="custom-select"
+            [options]="stateDiff"
+            [(ngModel)]="valuesD[$index]"
+            optionLabel="label"
+            optionValue="value"
+            aria-labelledby="basic"
+            />
+          </div>
+
+          <div class="items-center flex space-x-2">
+            <span>Type:</span>
+            <p-selectbutton
+            class="custom-select"
+            [options]="stateType"
+            [(ngModel)]="valuesT[$index]"
+            optionLabel="label"
+            optionValue="value"
+            aria-labelledby="basic"
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- start quiz -->
       <ng-template #footer>
         <div class="flex gap-4 mt-1">
-          <p-button variant="text" [raised]="true" severity="help">
+          <p-button
+            class="custom"
+            variant="text"
+            [raised]="true"
+            severity="help"
+            [disabled]="!valuesQ[$index] || !valuesD[$index] || !valuesT[$index]"
+            (onClick)="goToQuizPage($index)"
+          >
             Lets Go Quizzing!<lucide-icon
               [img]="RocketIcon"
               class="my-icon"

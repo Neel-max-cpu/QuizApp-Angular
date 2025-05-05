@@ -9,6 +9,15 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-::ng-deep .customClass.p-selectbutton{
-    background-color: red !important;
-  }
+.custom .p-button {
+  @apply hover:disabled:cursor-not-allowed;
+}
+
+
+.custom .p-progressbar{
+  @apply h-10;
+}
+
+.custom .p-progressbar-value{
+  @apply bg-black
+}

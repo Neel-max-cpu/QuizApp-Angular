@@ -11,6 +11,10 @@ import { SelectButton } from 'primeng/selectbutton'
 // icon --
 import { LucideAngularModule, Rocket } from 'lucide-angular';
 
+
+//services ---
+import { CategoryServiceService } from '../../services/category-service.service';
+
 @Component({
   selector: 'app-categories-component',
   imports: [ButtonModule, CardModule, LucideAngularModule,FormsModule, SelectButton],
@@ -19,22 +23,49 @@ import { LucideAngularModule, Rocket } from 'lucide-angular';
 })
 export class CategoriesComponentComponent {
 
-  stateOptions: any[] = [{ label: '10', value: '10' },{ label: '15', value: '15' },{ label: '20', value: '20' }];
-  value: string = 'off';
+  stateOptions: any[] = [{ label: '10', value: '10' },{ label: '15', value: '15' },{ label: '20', value: '20' }];  
+  stateDiff : any[] = [{label:'easy', value:'easy'}, {label:'medium', value:'medium'}, {label:'hard', value:'hard'}];
+  stateType : any[] = [{label:'Mulitple Choice', value:'multiple'}, {label:'True/False', value:'boolean'}]
   
   // icon --
   readonly RocketIcon = Rocket;
 
+  valuesQ: any[] = [];
+  valuesD: any[] = [];
+  valuesT: any[] = [];
 
   groupData !: CategoryGroup;
 
-  constructor(public router:Router){
+
+  constructor(
+    public router:Router,
+    private categoryService:CategoryServiceService
+  ){
     const nav = this.router.getCurrentNavigation();
     if(nav?.extras?.state && nav.extras.state['data']){
       this.groupData = nav.extras.state['data'] as CategoryGroup;      
+      this.valuesQ = new Array(this.groupData.categories.length).fill(null);
+      this.valuesD = new Array(this.groupData.categories.length).fill(null);
+      this.valuesT = new Array(this.groupData.categories.length).fill(null);
     }
     else{
       this.router.navigate(['/']);
     }
   }
+
+  goToQuizPage(index:number){
+    const amount = this.valuesQ[index];
+    const difficulty = this.valuesD[index];
+    const type = this.valuesT[index];
+    const categoryId = this.groupData.categories[index].id;
+
+    const apiUrl = `https://opentdb.com/api.php?amount=${amount}&category=${categoryId}&difficulty=${difficulty}&type=${type}`;
+    console.log('Quiz app url: ', apiUrl);
+
+    // save the previous
+    this.categoryService.setPreviousCategory(this.groupData);
+    this.router.navigate(['/quiz'], {state :{apiUrl}});
+  }
+
+  
 }
