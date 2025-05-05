@@ -64,7 +64,23 @@ export class CategoriesComponentComponent {
 
     // save the previous
     this.categoryService.setPreviousCategory(this.groupData);
-    this.router.navigate(['/quiz'], {state :{apiUrl}});
+
+    // fetch and check first - 
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data=>{
+      if(data.results && data.results.length >0){
+        // valid
+        this.router.navigate(['/quiz'], {state :{apiUrl}});
+      }
+      else{
+        alert('No quiz questions available for this selection. Please try different settings.')
+      }
+    })
+    .catch(err=>{
+      console.log("error fetching: ", err);
+      alert("An Error had occured while fetching backend error!");
+    });
   }
 
   

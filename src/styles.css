@@ -15,7 +15,7 @@ body {
 
 
 .custom .p-progressbar{
-  @apply h-10;
+  @apply h-2;
 }
 
 .custom .p-progressbar-value{
