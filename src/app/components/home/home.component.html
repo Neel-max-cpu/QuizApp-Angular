@@ -4,7 +4,7 @@
   <div class="text-center p-20">
     <div class="text-center text-white">
       <h1
-        class="font-mono text-3xl font-semibold flex justify-center flex-wrap gap-x-2"
+        class="my-font1 text-3xl font-semibold flex justify-center flex-wrap gap-x-2"
       >
         <span class="text-red-600">Test</span>
         <span>Your</span>
@@ -13,7 +13,7 @@
         <span>On Different</span>
         <span class="text-blue-600">Categories!</span>
       </h1>
-      <p class="mt-4 text-gray-700 font-mono text-base">
+      <p class="mt-4 text-gray-700 my-font2 text-base">
         Explore exciting topics, take on challenges, and see how much you really
         know! Dive into fun and challenging quizzes from various topics — sharpen your
         skills, learn new facts, and challenge your friends!
@@ -31,12 +31,12 @@
         <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />
       </ng-template>
       <ng-template #title> {{ item.groupName }} </ng-template>
-      <p class="font-mono">
+      <p class="my-font2">
         {{ item.description }}
       </p>
       <ng-template #footer>
         <div class="flex gap-4 mt-1">
-            <p-button (onClick)="goToCategory(item)"  styleClass="!font-semibold !font-mono" variant="text" [raised]="true" severity="danger" >
+            <p-button (onClick)="goToCategory(item)"  styleClass="!font-semibold" variant="text" [raised]="true" severity="danger" >
                 Go<lucide-icon [img]="RocketIcon" class="my-icon"></lucide-icon>
             </p-button>
         </div>
