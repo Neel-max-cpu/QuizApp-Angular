@@ -11,20 +11,32 @@
     />
   </div>
 
+  <!-- toast -->
+  <p-toast></p-toast>
+  
   <!-- main -->
+  <div class="mb-5">
+    <h1 class="text-3xl font-bold font-mono text-center text-white">Quiz on <span class="text-yellow-500"> {{groupData.groupName}} </span> Category </h1>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 font-mono p-5 gap-3">
     @for (item of groupData.categories; track $index) {
     <p-card class="w-full overflow-hidden rounded-xl max-w-md">
       <ng-template #header>
-        <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />
+        <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />      
       </ng-template>
-      <ng-template #title> Quiz on {{ item.name }}!</ng-template>
+      <ng-template #title>
+        <div class="font-bold text-2xl">Quiz on {{ item.name }}!</div>
+      </ng-template>
+      <ng-template #subtitle> 
+        <div><span class="font-semibold underline">Description:</span> {{item.desc}}</div>
+      </ng-template>
 
       <!-- question options option -->
       <div class="flex">
         <div class="flex flex-col space-y-2 space-x-1.5">
-          <div class="items-center flex space-x-2">
-            <span>Number of Question:</span>
+          <div class="items-center flex flex-col mb-3 space-y-2 md:flex-row space-x-2">
+            <span class="block md:hidden">Number of Questions:</span>
+            <span class="hidden md:block">Number of Qs:</span>
             <p-selectbutton
             class="custom-select"
             [options]="stateOptions"
@@ -35,7 +47,7 @@
             />
           </div>
 
-          <div class="items-center flex space-x-2">
+          <div class="items-center flex flex-col mb-3 space-y-2 md:flex-row space-x-2">
             <span>Difficulty:</span>
             <p-selectbutton
             class="custom-select"
@@ -47,7 +59,7 @@
             />
           </div>
 
-          <div class="items-center flex space-x-2">
+          <div class="items-center flex flex-col mb-3 space-y-2 md:flex-row space-x-2">
             <span>Type:</span>
             <p-selectbutton
             class="custom-select"
@@ -64,7 +76,7 @@
 
       <!-- start quiz -->
       <ng-template #footer>
-        <div class="flex gap-4 mt-1">
+        <div class="flex items-center justify-center gap-4 mt-1">
           <p-button
             class="custom"
             variant="text"

@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 
 
 export class HomeComponent {
-  imgSpace = 'images/spaceImg.jpg';
+  // imgSpace = 'images/spaceImg.jpg';
 
   // from the ts file
   array = groupedCategories;
