@@ -25,6 +25,7 @@ import { QuizService } from '../../services/quiz.service';
   providers:[MessageService],
   styleUrl: './quiz.component.css'
 })
+
 export class QuizComponent implements OnInit, OnDestroy {
   readonly X = X;
   readonly Check  = Check;
@@ -42,9 +43,8 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   quizFinished: boolean = false;
 
-
-  timer: any;
   // seconds
+  timer: any;
   timerLeft = 12;
 
   // progress bar -
@@ -71,11 +71,17 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.loadQuestion();
     } else {
       console.warn('No saved questions found. Loading mock fallback.');
-      this.quizQuestions = this.getMockQuestions();
-      this.loadQuestion();
+      // this.quizQuestions = this.getMockQuestions();
+      // this.loadQuestion();
+      this.messageService.add({ 
+        severity: 'warn', 
+        summary: 'Sorry Failed', 
+        detail: 'Failed to load quiz questions, api error', 
+        life: 3000 
+      });
+      this.goBackToCategory();
     }
   }
-
 
   ngOnDestroy(): void {
     this.clearTimer();
@@ -119,7 +125,7 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   submitAnswer() {
     if (!this.selectedAnswer || this.isSubmitted) return;
-  
+    
     this.clearTimer();
     this.isSubmitted = true;
   
@@ -214,7 +220,7 @@ export class QuizComponent implements OnInit, OnDestroy {
             detail: 'No questions received from API.', 
             life: 4000 
           });
-          this.mainPage();
+          this.goBackToCategory();
         }
       })
       .catch(err => {
@@ -227,7 +233,7 @@ export class QuizComponent implements OnInit, OnDestroy {
           detail: 'Failed to load quiz questions, api error', 
           life: 4000 
         });
-        this.mainPage();
+        this.goBackToCategory();
       });
   }
   
