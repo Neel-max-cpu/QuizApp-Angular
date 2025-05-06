@@ -25,8 +25,7 @@
     <!-- show the 3 different Options -->
     @for (item of array; track $index) {
     <p-card
-      class="shadow-2xl shadow-gray-500 transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-gray-500"
-      [style]="{ width: '22rem', overflow: 'hidden' }"
+      class="w-full overflow-hidden rounded-xl max-w-md shadow-2xl shadow-gray-500 transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-gray-500"
     >
       <ng-template #header>
         <img alt="Card" class="w-full" src="{{ item.imgSrc }}" />

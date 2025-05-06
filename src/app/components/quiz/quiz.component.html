@@ -52,9 +52,9 @@
           *ngFor="let option of shuffledOptions"
           class="p-2 rounded-xl hover:cursor-pointer hover:bg-blue-400 hover:text-white border-1 border-gray-200 text-left"
           [ngClass]="{
-            'bg-green-300':
+            'bg-green-500 text-white':
               isSubmitted && option === currentQuestion.correct_answer,
-            'bg-red-300':
+            'bg-red-500 text-white':
               isSubmitted &&
               option === selectedAnswer &&
               option !== currentQuestion.correct_answer,
